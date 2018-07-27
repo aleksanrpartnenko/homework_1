@@ -1,16 +1,32 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.forms.models import model_to_dict
 from django.conf import settings
-from django.shortcuts import redirect
 from django.views import View
 
 import requests, os, sys, string, unicodedata, ipaddress, re
 
 from .forms import *
 from .models import *
+
+from rest_framework import generics
+from .serializer import ENTRYSerializer
+
+class EntryList(generics.RetrieveUpdateDestroyAPIView):
+	model = ENTRY
+	queryset = ENTRY.objects.all()
+	serializer_class = ENTRYSerializer
+
+class EntryDetails(generics.ListCreateAPIView):
+	model = ENTRY
+	queryset = ENTRY.objects.all()
+	serializer_class = ENTRYSerializer
+
+def angular(request):
+	return render(request, 'angular.html', None )
+
 def home(request):
 	ENTRYS=ENTRY.objects.all().values_list('PLATE', 'NAME',)
 	return render(request, 'home.html',  {'ENTRYS':ENTRYS,} )
@@ -24,7 +40,7 @@ def add_plate(request):
 			else:
 				ENTRY.objects.create(NAME = (form1.cleaned_data['NAME']), PLATE=(form1.cleaned_data['PLATE']))
 		else:
-			return HttpResponseRedirect('error_page?errot_id')
+			return HttpResponseRedirect('error_page?error_id')
 	else:
 		form1 = PLATE_NAME()
 	return render(request, 'add_plate.html',  {'form1': form1,} )
