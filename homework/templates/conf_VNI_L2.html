@@ -1,0 +1,48 @@
+{% extends "webapp/base.html"%}
+
+
+{% block content %}
+      <div class="page-header">
+        <h1>L2 VNI ADD</h1>
+
+      </div>
+	  
+	<div class="row ">
+		<div class="col-md-6 ">
+          <table  id="myTable" class=" table table-condensed ">
+
+<form action="" method="post">
+	{% csrf_token %}
+    {{ form1  }}
+	{{ form2  }}
+	{{ form3 }}
+		</table>	
+ <table  id="myTable" class=" table table-condensed sortable">
+             <thead>
+              <tr>
+			  
+                <th class="">HOSTNAME</th>
+              </tr>
+            </thead>
+	<tbody>
+{% for  value in i  %}
+<tr>
+	<td>
+	<input type="checkbox" name="check_dev[]" value="{{value}}" />
+	<h8>{{value}}</h8>
+	</td>
+</tr>
+{% endfor %}
+     </tbody>
+         </table>
+<tr>
+	<th>
+	<input type="submit" value="Push it!" />
+	</th>
+</tr>
+</form>
+	</div>
+		</div>
+
+
+{% endblock %}

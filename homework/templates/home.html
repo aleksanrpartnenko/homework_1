@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>HOME</title>
+
+  </head>
+
+  <body>
+
+      <table  id="myTable" >
+          <thead>
+            <tr bgcolor="#E6E6E6">
+              <th class=" ">#</th>
+              <th class="">PLATE</th>
+              <th class="">NAME</th>
+            </tr>
+          </thead>
+ <tbody>	
+    {% for entry in ENTRYS %}
+
+    <tr {% if forloop.counter|divisibleby:2 %}bgcolor="#E6E6E6"{% else %}{% endif %} >
+<td> #{{ forloop.counter}}</td>
+ {% for  value in entry  %}
+{% if forloop.counter == 1 %}
+<td><a href="device?device_id={{value}}">{{value}}</a></td>
+{% else %}
+       <td>{{value}}</a></td>
+{% endif %}
+{% endfor %}
+    </tr>
+
+{% endfor %}
+
+  </body>
+</html>
+</tbody>
+</table>
