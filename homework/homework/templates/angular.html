@@ -1,16 +1,31 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<head>
+    <title>base</title>
 
-
+  </head>
+<html>
 <h1>DjAngular</h1>
-<body ng-app="{% block ng_app %}example.app.static{% endblock %}">
-    <div class="content" ng-controller="{% block ng_controller %}AppController{% endblock %}">{% block content %}
-    {% verbatim %}
-        <div class="panel" ng-repeat="post in posts">
-            <div class="panel-heading clearfix">
-                <h3 class="panel-title">{{ post.title }}</h3>
-                <author class="pull-right">{{ post.author.username }}</author>
+
+
+
+        <body ng-app="toDo" ng-controller="toDoController">
+            <form ng-submit="todoAdd()">
+                <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name">
+                <input type="text" ng-model="todoInput_PLATE" placeholder="Add a new Plate ID">
+                <button type="submit" ng-click="saveData()">Submit</button>
+            </form>
+            <br>
+            <div ng-repeat="todo in todoList">
+                <input type="checkbox" ng-model="todo.Remove" ><span ng-bind="todo.Name" > </span>&emsp;<span  ng-bind="todo.Plate" ></span>
             </div>
-            <p class="well">{{ post.body }}</p>
-        </div>
-    {% endverbatim %}
-    {% endblock %}</div>
+    
+            <p>
+                <button class="Remove"  ng-click="remove()">Remove</button>
+            </p>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+            <script src="{% static 'main.js' %}"></script>
+    </body>
+
+</html>
