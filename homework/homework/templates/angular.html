@@ -10,15 +10,21 @@
 
 
 
-        <body ng-app="toDo" ng-controller="toDoController">
-            <form ng-submit="todoAdd()">
-                <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name">
-                <input type="text" ng-model="todoInput_PLATE" placeholder="Add a new Plate ID">
+        <body ng-app="toDo" ng-controller="toDoController" >
+            <form ng-submit="todoAdd()" >
+                <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name"   >
+                <input type="text" ng-model="todoInput_PLATE" placeholder="Add a new Plate ID" required ng-minlength="6" ng-maxlength="6">
+                <div class="field-message" ng-messages="frm.password.$error" ng-if='frm.password.$dirty' ng-cloak>
+                    <div ng-message="required">Password is required</div>
+                    <div ng-message="minlength">Password must have minimum 6 characters</div>
+                    <div ng-message="maxlength">Password must have maximum 10 characters</div>
+                  </div>
                 <button type="submit" ng-click="saveData()">Submit</button>
             </form>
             <br>
             <div ng-repeat="todo in todoList">
-                <input type="checkbox" ng-model="todo.Remove" ><span ng-bind="todo.Name" > </span>&emsp;<span  ng-bind="todo.Plate" ></span>
+                <input type="checkbox" ng-model="todo.Remove" ><span  ng-bind="todo.Name" > </span >&emsp;
+                <span  ng-bind="todo.Plate" ></span>
             </div>
     
             <p>

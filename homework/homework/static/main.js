@@ -1,4 +1,4 @@
-var app = angular.module('toDo', []);
+var app = angular.module('toDo', ['ngMessages']);
 app.controller('toDoController', function($scope, $http) {
     // $scope.todoList = [{todoText: 'Finish this app', done: false}];
     $http.get('/plates').then(function(response) {
@@ -8,7 +8,7 @@ app.controller('toDoController', function($scope, $http) {
             var todo = {};
             todo.Name = response.data[i].NAME
             todo.Plate = response.data[i].PLATE
-            todo.Remove = false
+            //todo.Remove = false
             todo.id = response.data[i].id
             $scope.todoList.push(todo);
         }
@@ -34,7 +34,11 @@ app.controller('toDoController', function($scope, $http) {
                 $http.delete('/plates/' + todo.id + '/');
             } else {
                 $scope.todoList.push(todo);
+                var new_data =  {NAME: todo.Name, PLATE: todo.Plate, }
+                console.log (new_data)
+                $http.put('/plates/' + todo.id + '/', new_data);
             }
         })
     }
 })
+
