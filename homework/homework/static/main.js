@@ -21,7 +21,7 @@ app.controller('toDoController', function($scope, $http) {
         console.log (data)
     }
     $scope.todoAdd = function() {
-        $scope.todoList.push({NAME: $scope.todoInput_NAME, PLATE: $scope.todoInput_PLATE, });
+        $scope.todoList.push({Name: $scope.todoInput_NAME, Plate: $scope.todoInput_PLATE, Remove: false});
         $scope.todoInput_NAME = '';
         $scope.todoInput_PLATE = '';
     };
