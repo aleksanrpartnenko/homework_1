@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load static %}
+<head>
+        <meta charset="utf-8">
+    <title>plate_update</title>
+  </head>
+<html>
+ {% block content %}
+<h1>Update entry Name: {{UNAME}}  Plate: {{UPLATE}}</h1>
+{% endblock %}
+
+        <body ng-app="toUpdate" ng-controller="UpdateDoController" >
+ 
+                {% verbatim %}
+                            
+                  
+                
+            <form ng-submit="todoUpdate()"  name="frm"  >
+                <input type="text" ng-model="todoInput_NAME" placeholder="Update Name"   required>
+                <input type="text" name="Plate_In" ng-model="todoInput_PLATE" ng-pattern="regex" placeholder="Update Plate ID" required ng-minlength="6" ng-maxlength="6">
+                <div class="field-message" ng-messages="frm.Plate_In.$error" ng-if='frm.Plate_In.$dirty' ng-cloak>
+                    <div ng-message="required">Plate id is required</div>
+                    <div ng-message="minlength">Plate id must have minimum 6 characters</div>
+                    <div ng-message="maxlength">Plate id must have maximum 6 characters</div>
+                  </div>
+                <button type="submit" ng-click="saveData()" ng-disabled="frm.$invalid">Submit</button>
+            </form>
+            {% endverbatim %}
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+            <script src="{% static 'main.js' %}"></script>
+    </body>
+
+</html>

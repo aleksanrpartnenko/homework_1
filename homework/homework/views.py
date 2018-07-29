@@ -25,7 +25,14 @@ class EntryDetails(generics.ListCreateAPIView):
 	serializer_class = ENTRYSerializer
 
 def angular(request):
-	return render(request, 'angular.html', None )
+	return render(request, 'angular.html',  )
+
+def plate_update(request):
+	plate_id = request.GET.get('id', None)
+	UNAME=ENTRY.objects.filter(id = plate_id).values_list('NAME', flat=True)[0]
+	UPLATE=ENTRY.objects.filter(id = plate_id).values_list('PLATE', flat=True)[0]
+	print type(UNAME)
+	return render(request, 'plate_update.html', {'UPLATE': UPLATE , 'UNAME': UNAME}  )
 
 def home(request):
 	ENTRYS=ENTRY.objects.all().values_list('PLATE', 'NAME',)

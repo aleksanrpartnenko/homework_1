@@ -1,7 +1,10 @@
 from django import forms
 
 import re
-class PLATE_NAME(forms.Form):
+
+from djng.forms import NgFormValidationMixin, NgForm, NgModelForm
+
+class PLATE_NAME( forms.Form):
 	PLATE = forms.CharField(label='PLATE', max_length=6)
 	def clean_PLATE(self):
 		pattern = re.compile("[a-zA-z]{3}[\d]{3}$")

@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^plates/(?P<pk>[0-9]+)/$', EntryList.as_view(), name='EntryList'),
     url(r'^plates$', EntryDetails.as_view(), name='EntryDetails'),
     url(r'^angular$',  views.angular, name = 'angular'),
+    url(r'^plate_update$',  views.plate_update, name = 'plate_update'),
 ]

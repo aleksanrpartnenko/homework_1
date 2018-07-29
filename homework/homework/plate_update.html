@@ -1,14 +1,12 @@
-{% extends "base.html"%}
+<!DOCTYPE html>
 {% load staticfiles %}
 {% load static %}
-{% block content %}
 <head>
     <title>base</title>
   </head>
 <html>
-<h1>DjAngular</h1>
+<h1>Update_entry</h1>
         <body ng-app="toDo" ng-controller="toDoController" >
-                {% verbatim %}
             <form ng-submit="todoAdd()"  name="frm"  id="demoApp">
                 <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name"   required>
                 <input type="text" name="Plate_In" ng-model="todoInput_PLATE" ng-pattern="regex" placeholder="Add a new Plate ID" required ng-minlength="6" ng-maxlength="6">
@@ -22,16 +20,14 @@
             <br>
             <div ng-repeat="todo in todoList">
                 <input type="checkbox" ng-model="todo.Remove" ><span  ng-bind="todo.Name" > </span >&emsp;
-                <span  ng-bind="todo.Plate"  ></span> <a ng-href="/plate_update?id={{todo.id}}">EDIT</a>
+                <span  ng-bind="todo.Plate" ></span>
             </div>
-
+    
             <p>
                 <button class="Remove"  ng-click="remove()">Remove</button>
             </p>
-            {% endverbatim %}
-            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
             <script src="{% static 'main.js' %}"></script>
     </body>
 
 </html>
-{% endblock %}
