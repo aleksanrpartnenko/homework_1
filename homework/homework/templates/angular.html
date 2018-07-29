@@ -10,7 +10,7 @@
         <body ng-app="toDo" ng-controller="toDoController" >
                 {% verbatim %}
             <form ng-submit="todoAdd()"  name="frm"  id="demoApp">
-                <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name"   required>
+                <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name"   required name="Name_in">
                 <input type="text" name="Plate_In" ng-model="todoInput_PLATE" ng-pattern="regex" placeholder="Add a new Plate ID" required ng-minlength="6" ng-maxlength="6">
                 <div class="field-message" ng-messages="frm.Plate_In.$error" ng-if='frm.Plate_In.$dirty' ng-cloak>
                     <div ng-message="required">Plate id is required</div>
