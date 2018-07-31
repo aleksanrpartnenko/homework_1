@@ -1,6 +1,9 @@
+#to use test download geckodriver for your system from https://github.com/mozilla/geckodriver/releases
+#ADD a path variable for it
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 i=0
+
 User_LIST = ["Jonas M", "Jurgis X", "Vaidas L"]
 Plate_LIST =["acv345", "klm059", "odp543"]
 driver = webdriver.Firefox()
@@ -12,8 +15,10 @@ while i < len(User_LIST):
     user.send_keys(User_LIST[i])
     plate.send_keys(Plate_LIST[i])
     driver.find_element_by_name("submit").click()
+    print 'trying to apply User' + User_LIST[i] +" and Plate ID "+ Plate_LIST[i]
     i+=1
+    
 
 #elem = driver.find_elements_by_xpath("//*[@id=\"demoApp\"]/button")#put here the content you have put in Notepad, ie the XPath
 #print(elem .get_attribute("class"))
-driver.close()
+#driver.close()
