@@ -10,14 +10,14 @@
         <body ng-app="toDo" ng-controller="toDoController" >
                 {% verbatim %}
             <form ng-submit="todoAdd()"  name="frm"  id="demoApp">
-                <input type="text" ng-model="todoInput_NAME" placeholder="Add a new Name"   required name="Name_in">
-                <input type="text" name="Plate_In" ng-model="todoInput_PLATE" ng-pattern="regex" placeholder="Add a new Plate ID" required ng-minlength="6" ng-maxlength="6">
+                <input type="text" id="NAMEID" ng-model="todoInput_NAME" placeholder="Add a new Name"   required name="Name_in">
+                <input type="text" id="PLATEID" name="Plate_In" ng-model="todoInput_PLATE" ng-pattern="regex" placeholder="Add a new Plate ID" required ng-minlength="6" ng-maxlength="6">
                 <div class="field-message" ng-messages="frm.Plate_In.$error" ng-if='frm.Plate_In.$dirty' ng-cloak>
                     <div ng-message="required">Plate id is required</div>
                     <div ng-message="minlength">Plate id must have minimum 6 characters</div>
                     <div ng-message="maxlength">Plate id must have maximum 6 characters</div>
                   </div>
-                <button type="submit" ng-click="saveData()" ng-disabled="frm.$invalid">Submit</button>
+                <button type="submit" name ="submit" ng-click="saveData()" ng-disabled="frm.$invalid">Submit</button>
             </form>
             <br>
             <div ng-repeat="todo in todoList">
